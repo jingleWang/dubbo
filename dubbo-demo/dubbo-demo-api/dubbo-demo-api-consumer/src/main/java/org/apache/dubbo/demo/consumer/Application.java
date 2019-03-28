@@ -22,6 +22,7 @@ import org.apache.dubbo.config.ApplicationConfig;
 import org.apache.dubbo.config.ReferenceConfig;
 import org.apache.dubbo.config.RegistryConfig;
 import org.apache.dubbo.demo.DemoService;
+import org.apache.dubbo.rpc.RpcContext;
 
 public class Application {
     /**
@@ -31,9 +32,12 @@ public class Application {
     public static void main(String[] args) {
         ReferenceConfig<DemoService> reference = new ReferenceConfig<>();
         reference.setApplication(new ApplicationConfig("dubbo-demo-api-consumer"));
-        reference.setRegistry(new RegistryConfig("multicast://224.5.6.7:1234"));
+        reference.setRegistry(new RegistryConfig("zookeeper://127.0.0.1:2181"));
         reference.setInterface(DemoService.class);
         DemoService service = reference.get();
+        RpcContext.getContext().setAttachment("a", "1");
+        RpcContext.getContext().setAttachment("b", "2");
+        RpcContext.getContext().setAttachment("c", "3");
         String message = service.sayHello("dubbo");
         System.out.println(message);
     }

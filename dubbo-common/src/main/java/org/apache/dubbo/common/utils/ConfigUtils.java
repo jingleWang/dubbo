@@ -119,6 +119,13 @@ public class ConfigUtils {
         return names;
     }
 
+
+    /**
+     * 处理资源占位符 ${key}
+     * @param expression
+     * @param params
+     * @return
+     */
     public static String replaceProperty(String expression, Map<String, String> params) {
         if (expression == null || expression.length() == 0 || expression.indexOf('$') < 0) {
             return expression;
@@ -144,6 +151,8 @@ public class ConfigUtils {
         if (PROPERTIES == null) {
             synchronized (ConfigUtils.class) {
                 if (PROPERTIES == null) {
+                    //可以修改java启动参数dubbo.properties.file 修改dubbo配置文件路径
+                    //默认使用dubbo.properties文件
                     String path = System.getProperty(Constants.DUBBO_PROPERTIES_KEY);
                     if (path == null || path.length() == 0) {
                         path = System.getenv(Constants.DUBBO_PROPERTIES_KEY);
@@ -151,7 +160,7 @@ public class ConfigUtils {
                             path = Constants.DEFAULT_DUBBO_PROPERTIES;
                         }
                     }
-                    PROPERTIES = ConfigUtils.loadProperties(path, false, true);
+                    PROPERTIES = ConfigUtils.loadProperties(path, false, true); //加载资源
                 }
             }
         }

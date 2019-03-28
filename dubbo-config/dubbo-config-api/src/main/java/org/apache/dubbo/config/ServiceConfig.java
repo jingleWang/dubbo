@@ -262,11 +262,11 @@ public class ServiceConfig<T> extends AbstractServiceConfig {
 
     public void checkAndUpdateSubConfigs() {
         // Use default configs defined explicitly on global configs
-        completeCompoundConfigs();
+        completeCompoundConfigs(); //应用全局配置
         // Config Center should always being started first.
         startConfigCenter();
-        checkDefault();
-        checkApplication();
+        checkDefault();     //如果没有配置全局的provider  则创建一个Provider配置
+        checkApplication(); //判断是否存在Application配置
         checkRegistry();
         checkProtocol();
         this.refresh();
@@ -744,6 +744,10 @@ public class ServiceConfig<T> extends AbstractServiceConfig {
         return port;
     }
 
+
+    /**
+     * 设置provider的配置
+     */
     private void completeCompoundConfigs() {
         if (provider != null) {
             if (application == null) {

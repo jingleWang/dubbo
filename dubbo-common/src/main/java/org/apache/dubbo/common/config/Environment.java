@@ -31,8 +31,8 @@ public class Environment {
     private static final Environment INSTANCE = new Environment();
 
     private Map<String, PropertiesConfiguration> propertiesConfigs = new ConcurrentHashMap<>();
-    private Map<String, SystemConfiguration> systemConfigs = new ConcurrentHashMap<>();
-    private Map<String, EnvironmentConfiguration> environmentConfigs = new ConcurrentHashMap<>();
+    private Map<String, SystemConfiguration> systemConfigs = new ConcurrentHashMap<>();     //系统资源
+    private Map<String, EnvironmentConfiguration> environmentConfigs = new ConcurrentHashMap<>();   //系统环境配置
     private Map<String, InmemoryConfiguration> externalConfigs = new ConcurrentHashMap<>();
     private Map<String, InmemoryConfiguration> appExternalConfigs = new ConcurrentHashMap<>();
 

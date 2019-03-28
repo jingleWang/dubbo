@@ -154,9 +154,9 @@ public abstract class AbstractInterfaceConfig extends AbstractMethodConfig {
      * Check whether the registry config is exists, and then conversion it to {@link RegistryConfig}
      */
     protected void checkRegistry() {
-        loadRegistriesFromBackwardConfig();
+        loadRegistriesFromBackwardConfig(); //加载配置文件registry配置
 
-        convertRegistryIdsToRegistries();
+        convertRegistryIdsToRegistries(); //解析配置的多个注册中心
 
         for (RegistryConfig registryConfig : registries) {
             if (!registryConfig.isValid()) {
@@ -173,7 +173,7 @@ public abstract class AbstractInterfaceConfig extends AbstractMethodConfig {
         // for backward compatibility
         createApplicationIfAbsent();
 
-        if (!application.isValid()) {
+        if (!application.isValid()) {   //必须有application name
             throw new IllegalStateException("No application config found or it's not a valid config! " +
                     "Please add <dubbo:application name=\"...\" /> to your spring config.");
         }

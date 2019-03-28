@@ -17,6 +17,7 @@
 package org.apache.dubbo.common.config;
 
 /**
+ * 配置管理器 定义了获取配置的接口
  * Configuration interface, to fetch the value for the specified key.
  */
 public interface Configuration {
