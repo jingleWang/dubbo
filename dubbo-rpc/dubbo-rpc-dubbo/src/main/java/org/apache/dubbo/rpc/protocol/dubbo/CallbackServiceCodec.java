@@ -30,6 +30,7 @@ import org.apache.dubbo.rpc.Invocation;
 import org.apache.dubbo.rpc.Invoker;
 import org.apache.dubbo.rpc.ProxyFactory;
 import org.apache.dubbo.rpc.RpcInvocation;
+import org.apache.dubbo.rpc.protocol.AsyncToSyncInvoker;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -41,8 +42,8 @@ import static org.apache.dubbo.common.constants.CommonConstants.INTERFACE_KEY;
 import static org.apache.dubbo.common.constants.CommonConstants.METHODS_KEY;
 import static org.apache.dubbo.common.constants.CommonConstants.VERSION_KEY;
 import static org.apache.dubbo.rpc.protocol.dubbo.Constants.CALLBACK_SERVICE_KEY;
-import static org.apache.dubbo.common.constants.RpcConstants.CALLBACK_INSTANCES_LIMIT_KEY;
-import static org.apache.dubbo.common.constants.RpcConstants.DEFAULT_CALLBACK_INSTANCES;
+import static org.apache.dubbo.rpc.Constants.CALLBACK_INSTANCES_LIMIT_KEY;
+import static org.apache.dubbo.rpc.Constants.DEFAULT_CALLBACK_INSTANCES;
 import static org.apache.dubbo.rpc.protocol.dubbo.Constants.CALLBACK_SERVICE_PROXY_KEY;
 import static org.apache.dubbo.rpc.protocol.dubbo.Constants.IS_CALLBACK_SERVICE;
 import static org.apache.dubbo.rpc.protocol.dubbo.Constants.CHANNEL_CALLBACK_KEY;
@@ -67,9 +68,9 @@ class CallbackServiceCodec {
         if (url != null) {
             String callback = url.getParameter(methodName + "." + argIndex + ".callback");
             if (callback != null) {
-                if (callback.equalsIgnoreCase("true")) {
+                if ("true".equalsIgnoreCase(callback)) {
                     isCallback = CALLBACK_CREATE;
-                } else if (callback.equalsIgnoreCase("false")) {
+                } else if ("false".equalsIgnoreCase(callback)) {
                     isCallback = CALLBACK_DESTROY;
                 }
             }
@@ -155,7 +156,7 @@ class CallbackServiceCodec {
                 if (!isInstancesOverLimit(channel, referurl, clazz.getName(), instid, true)) {
                     @SuppressWarnings("rawtypes")
                     Invoker<?> invoker = new ChannelWrappedInvoker(clazz, channel, referurl, String.valueOf(instid));
-                    proxy = PROXY_FACTORY.getProxy(invoker);
+                    proxy = PROXY_FACTORY.getProxy(new AsyncToSyncInvoker<>(invoker));
                     channel.setAttribute(proxyCacheKey, proxy);
                     channel.setAttribute(invokerCacheKey, invoker);
                     increaseInstanceCount(channel, countkey);
