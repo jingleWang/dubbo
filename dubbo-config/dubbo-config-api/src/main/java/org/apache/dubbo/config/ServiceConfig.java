@@ -294,7 +294,7 @@ public class ServiceConfig<T> extends AbstractServiceConfig {
         completeCompoundConfigs();
         // Config Center should always being started first.
         startConfigCenter();
-        checkDefault();
+        checkDefault();  //初始化Provider Config
         checkProtocol();
         checkApplication();
         // if protocol is not injvm checkRegistry

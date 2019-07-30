@@ -181,8 +181,11 @@ public class RegistryConfig extends AbstractConfig {
         if (address != null) {
             int i = address.indexOf("://");
             if (i > 0) {
+                //赋值config id 和 protocol
                 this.updateIdIfAbsent(address.substring(0, i));
                 this.updateProtocolIfAbsent(address.substring(0, i));
+
+                //解析端口号
                 int port = address.lastIndexOf(":");
                 if (port > 0) {
                     this.updatePortIfAbsent(StringUtils.parseInteger(address.substring(port + 1)));
