@@ -627,7 +627,7 @@ public class ExtensionLoader<T> {
 
     // synchronized in getExtensionClasses
     private Map<String, Class<?>> loadExtensionClasses() {
-        cacheDefaultExtensionName();
+        cacheDefaultExtensionName(); //解析SPI value
 
         Map<String, Class<?>> extensionClasses = new HashMap<>();
         loadDirectory(extensionClasses, DUBBO_INTERNAL_DIRECTORY, type.getName());
@@ -723,7 +723,7 @@ public class ExtensionLoader<T> {
         }
         if (clazz.isAnnotationPresent(Adaptive.class)) {
             cacheAdaptiveClass(clazz);
-        } else if (isWrapperClass(clazz)) {
+        } else if (isWrapperClass(clazz)) { //是否存在一个参数为当前接口的构造函数
             cacheWrapperClass(clazz);
         } else {
             clazz.getConstructor();
@@ -786,6 +786,7 @@ public class ExtensionLoader<T> {
 
     /**
      * cache Adaptive class which is annotated with <code>Adaptive</code>
+     * 如果存在多个adaptive extension 会抛出异常
      */
     private void cacheAdaptiveClass(Class<?> clazz) {
         if (cachedAdaptiveClass == null) {
@@ -850,9 +851,15 @@ public class ExtensionLoader<T> {
         if (cachedAdaptiveClass != null) {
             return cachedAdaptiveClass;
         }
+        //当没有配置Adaptive 实现类时，自动生成一个实现类
+        //所有的方法将代理到spi默认的实现类中
         return cachedAdaptiveClass = createAdaptiveExtensionClass();
     }
 
+    /**
+     * 使用javassist生成adaptive extension 类
+     * @return
+     */
     private Class<?> createAdaptiveExtensionClass() {
         String code = new AdaptiveClassCodeGenerator(type, cachedDefaultName).generate();
         ClassLoader classLoader = findClassLoader();
