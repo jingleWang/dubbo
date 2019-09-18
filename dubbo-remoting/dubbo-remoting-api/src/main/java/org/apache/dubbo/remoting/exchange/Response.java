@@ -66,12 +66,12 @@ public class Response {
     public static final byte SERVICE_ERROR = 70;
 
     /**
-     * internal server error.
+     * META-INF.dubbo.internal server error.
      */
     public static final byte SERVER_ERROR = 80;
 
     /**
-     * internal server error.
+     * META-INF.dubbo.internal server error.
      */
     public static final byte CLIENT_ERROR = 90;
 

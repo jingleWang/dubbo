@@ -75,7 +75,7 @@ import java.util.concurrent.atomic.AtomicReference;
 @Disabled
 public class EtcdRegistryTest {
 
-    String service = "org.apache.dubbo.internal.test.DemoServie";
+    String service = "org.apache.dubbo.META-INF.dubbo.internal.test.DemoServie";
     String outerService = "org.apache.dubbo.outer.test.OuterDemoServie";
     URL serviceUrl = URL.valueOf("dubbo://" + NetUtils.getLocalHost() + "/" + service + "?methods=test1,test2");
     URL serviceUrl2 = URL.valueOf("dubbo://" + NetUtils.getLocalHost() + "/" + service + "?methods=test1,test2,test3");

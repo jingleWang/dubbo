@@ -51,11 +51,11 @@ public interface Configuration {
      * of the {@code Configuration} interface the other get methods (that
      * return specific data types) will internally make use of this method. On
      * this level variable substitution is not yet performed. The returned
-     * object is an internal representation of the property value for the passed
+     * object is an META-INF.dubbo.internal representation of the property value for the passed
      * in key. It is owned by the {@code Configuration} object. So a caller
      * should not modify this object. It cannot be guaranteed that this object
      * will stay constant over time (i.e. further update operations on the
-     * configuration may change its internal state).
+     * configuration may change its META-INF.dubbo.internal state).
      *
      * @param key property to retrieve
      * @return the value to which this configuration maps the specified key, or

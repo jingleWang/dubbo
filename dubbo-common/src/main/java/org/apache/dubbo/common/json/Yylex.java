@@ -247,8 +247,13 @@ public class Yylex {
     private static final int ZZ_NO_MATCH = 1;
     private static final int ZZ_PUSHBACK_2BIG = 2;
     /* error messages for the codes above */
+<<<<<<< Updated upstream
     private static final String ZZ_ERROR_MSG[] = {
             "Unkown internal scanner error",
+=======
+    private static final String[] ZZ_ERROR_MSG = {
+            "Unkown META-INF.dubbo.internal scanner error",
+>>>>>>> Stashed changes
             "Error: could not match input",
             "Error: pushback value was too large"
     };
@@ -493,8 +498,8 @@ public class Yylex {
      * Resets the scanner to read from a new input stream.
      * Does not close the old reader.
      * <p>
-     * All internal variables are reset, the old input stream
-     * <b>cannot</b> be reused (internal buffer is discarded and lost).
+     * All META-INF.dubbo.internal variables are reset, the old input stream
+     * <b>cannot</b> be reused (META-INF.dubbo.internal buffer is discarded and lost).
      * Lexical state is set to <tt>ZZ_INITIAL</tt>.
      *
      * @param reader the new input stream

@@ -56,16 +56,16 @@ public class InternalThread extends Thread {
     }
 
     /**
-     * Returns the internal data structure that keeps the threadLocal variables bound to this thread.
-     * Note that this method is for internal use only, and thus is subject to change at any time.
+     * Returns the META-INF.dubbo.internal data structure that keeps the threadLocal variables bound to this thread.
+     * Note that this method is for META-INF.dubbo.internal use only, and thus is subject to change at any time.
      */
     public final InternalThreadLocalMap threadLocalMap() {
         return threadLocalMap;
     }
 
     /**
-     * Sets the internal data structure that keeps the threadLocal variables bound to this thread.
-     * Note that this method is for internal use only, and thus is subject to change at any time.
+     * Sets the META-INF.dubbo.internal data structure that keeps the threadLocal variables bound to this thread.
+     * Note that this method is for META-INF.dubbo.internal use only, and thus is subject to change at any time.
      */
     public final void setThreadLocalMap(InternalThreadLocalMap threadLocalMap) {
         this.threadLocalMap = threadLocalMap;

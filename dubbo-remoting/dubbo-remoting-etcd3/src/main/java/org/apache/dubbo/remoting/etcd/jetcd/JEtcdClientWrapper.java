@@ -266,7 +266,7 @@ public class JEtcdClientWrapper {
     }
 
     /**
-     * only internal use only, maybe change in the future
+     * only META-INF.dubbo.internal use only, maybe change in the future
      */
     protected Long find(String path) {
         try {

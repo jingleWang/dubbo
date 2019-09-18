@@ -50,7 +50,7 @@ import java.util.concurrent.TimeoutException;
 public class RpcContext {
 
     /**
-     * use internal thread local to improve performance
+     * use META-INF.dubbo.internal thread local to improve performance
      */
     // FIXME REQUEST_CONTEXT
     private static final InternalThreadLocal<RpcContext> LOCAL = new InternalThreadLocal<RpcContext>() {

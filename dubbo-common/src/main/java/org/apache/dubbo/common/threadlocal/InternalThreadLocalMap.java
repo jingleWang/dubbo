@@ -20,8 +20,8 @@ import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * The internal data structure that stores the threadLocal variables for Netty and all {@link InternalThread}s.
- * Note that this class is for internal use only. Use {@link InternalThread}
+ * The META-INF.dubbo.internal data structure that stores the threadLocal variables for Netty and all {@link InternalThread}s.
+ * Note that this class is for META-INF.dubbo.internal use only. Use {@link InternalThread}
  * unless you know what you are doing.
  */
 public final class InternalThreadLocalMap {

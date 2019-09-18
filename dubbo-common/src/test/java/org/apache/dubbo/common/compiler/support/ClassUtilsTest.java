@@ -42,12 +42,12 @@ public class ClassUtilsTest {
 
     @Test
     public void testNewInstance1() {
-        Assertions.assertThrows(IllegalStateException.class, () -> ClassUtils.newInstance("org.apache.dubbo.common.compiler.support.internal.HelloServiceInternalImpl"));
+        Assertions.assertThrows(IllegalStateException.class, () -> ClassUtils.newInstance("org.apache.dubbo.common.compiler.support.META-INF.dubbo.internal.HelloServiceInternalImpl"));
     }
 
     @Test
     public void testNewInstance2() {
-        Assertions.assertThrows(IllegalStateException.class, () -> ClassUtils.newInstance("org.apache.dubbo.common.compiler.support.internal.NotExistsImpl"));
+        Assertions.assertThrows(IllegalStateException.class, () -> ClassUtils.newInstance("org.apache.dubbo.common.compiler.support.META-INF.dubbo.internal.NotExistsImpl"));
     }
 
     @Test
